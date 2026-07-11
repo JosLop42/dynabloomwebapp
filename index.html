@@ -259,6 +259,119 @@
       margin-top: 0.25rem;
     }
 
+    /* ── CAROUSEL (SERVICIOS) ── */
+    .carousel {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .carousel-viewport {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.75rem;
+      box-sizing: border-box;
+    }
+
+    .carousel-slide h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+    }
+
+    .carousel-slide > p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 1.5rem;
+    }
+
+    .carousel-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .carousel-features li {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .carousel-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .carousel-arrow {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--dark2);
+      color: var(--text);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .carousel-arrow:hover {
+      border-color: rgba(0,212,255,0.4);
+      background: rgba(0,212,255,0.08);
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      width: 22px;
+      border-radius: 100px;
+    }
+
+    @media (max-width: 640px) {
+      .carousel { flex-direction: column; }
+      .carousel-arrow { display: none; }
+      .carousel-slide { padding: 2rem; }
+    }
+
     /* ── SECTIONS ── */
     section {
       padding: 6rem 2rem;
@@ -407,6 +520,47 @@
       margin: 0 auto;
     }
 
+    .quote-card {
+      max-width: 620px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+    }
+
+    .quote-card-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 0 24px rgba(0,212,255,0.25);
+    }
+
+    .quote-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.9rem;
+    }
+
+    .quote-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+    }
+
+    .quote-card .plan-cta {
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+    }
+
     .plans-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -470,12 +624,27 @@
       color: var(--muted);
     }
 
+    .plan-setup {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
     .plan-desc {
       font-size: 0.82rem;
       color: var(--muted);
       margin-bottom: 1.5rem;
       padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+
+    .pricing-note {
+      max-width: 640px;
+      margin: 0.5rem auto 2.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
       line-height: 1.5;
     }
 
@@ -704,6 +873,51 @@
   </div>
 </div>
 
+<!-- SERVICIOS (CARRUSEL) -->
+<section id="servicios">
+  <div class="section-label">Nuestros servicios</div>
+  <h2 class="section-title">Dos formas de ayudar<br /><span>a tu negocio</span></h2>
+  <p class="section-sub">Desde un agente de IA que atiende tus redes, hasta el sistema completo hecho a tu medida.</p>
+
+  <div class="carousel">
+    <button class="carousel-arrow carousel-prev" aria-label="Anterior">←</button>
+
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carouselTrack">
+
+        <div class="carousel-slide">
+          <div class="quote-card-icon">🤖</div>
+          <h3>Agentes de IA</h3>
+          <p>Automatizamos la atención de tu negocio en WhatsApp, Instagram y Facebook — un agente entrenado con la información de tu negocio que responde 24/7, toma pedidos y nunca pierde una conversación.</p>
+          <ul class="carousel-features">
+            <li>Atención 24/7 en tus redes</li>
+            <li>Entrenado con la información de tu negocio</li>
+            <li>Dashboard para ver todo en un solo lugar</li>
+          </ul>
+          <a href="#como-funciona" class="plan-cta plan-cta-primary">Ver cómo funciona →</a>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="quote-card-icon">🛠️</div>
+          <h3>Sistemas a medida</h3>
+          <p>¿Tu negocio necesita algo más que un agente? Diseñamos y construimos el sistema completo — paneles internos, automatizaciones, integraciones — hecho específicamente para cómo trabajas.</p>
+          <ul class="carousel-features">
+            <li>Paneles y dashboards a medida</li>
+            <li>Automatizaciones e integraciones</li>
+            <li>Construido para tu proceso, no al revés</li>
+          </ul>
+          <a href="#contacto" class="plan-cta plan-cta-primary">Cuéntanos tu proyecto →</a>
+        </div>
+
+      </div>
+    </div>
+
+    <button class="carousel-arrow carousel-next" aria-label="Siguiente">→</button>
+  </div>
+
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
 <!-- FEATURES -->
 <section>
   <div class="section-label">¿Qué hacemos?</div>
@@ -784,75 +998,14 @@
 <section id="planes">
   <div class="pricing-inner">
     <div class="section-label">Precios</div>
-    <h2 class="section-title">Planes diseñados para<br /><span>cada tipo de negocio</span></h2>
-    <p class="section-sub">Todos los planes incluyen onboarding completo, soporte y acceso al dashboard. Sin contratos de largo plazo.</p>
+    <h2 class="section-title">Un precio hecho<br /><span>a la medida de tu negocio</span></h2>
+    <p class="section-sub">El costo depende de cuántas plataformas conectes (WhatsApp, Instagram, Facebook), tu volumen de conversaciones y qué tan a medida necesitas el agente. Por eso no publicamos una tabla genérica — te armamos una propuesta real después de entender tu negocio.</p>
 
-    <div class="plans-grid">
-
-      <!-- BÁSICO -->
-      <div class="plan-card">
-        <div class="plan-name">Básico</div>
-        <div class="plan-price">Q950 <span>/ mes</span></div>
-        <div class="plan-desc">Ideal para negocios pequeños que quieren automatizar su WhatsApp sin complicaciones.</div>
-        <ul class="plan-features">
-          <li>Agente AI personalizado</li>
-          <li>WhatsApp Business 24/7</li>
-          <li>Hasta 500 conversaciones/mes</li>
-          <li>Dashboard en appdynabloomgt.com</li>
-          <li>1 integración (ej. Telegram)</li>
-          <li>Soporte y ajustes incluidos</li>
-        </ul>
-        <a href="#contacto" class="plan-cta plan-cta-secondary">Comenzar →</a>
-      </div>
-
-      <!-- PRO -->
-      <div class="plan-card featured">
-        <div class="plan-badge">⚡ Más popular</div>
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">Q1,500 <span>/ mes</span></div>
-        <div class="plan-desc">Para negocios en crecimiento con alto volumen de mensajes y múltiples sucursales.</div>
-        <ul class="plan-features">
-          <li>Todo lo del plan Básico</li>
-          <li>Hasta 1,500 conversaciones/mes</li>
-          <li>Hasta 3 integraciones activas</li>
-          <li>Soporte prioritario</li>
-          <li>Ajustes ilimitados al agente</li>
-        </ul>
-        <a href="#contacto" class="plan-cta plan-cta-primary">Comenzar →</a>
-      </div>
-
-      <!-- EMPRESARIAL -->
-      <div class="plan-card">
-        <div class="plan-name">Empresarial</div>
-        <div class="plan-price">Q2,200 <span>/ mes</span></div>
-        <div class="plan-desc">Para cadenas y empresas con alta demanda y necesidad de automatizaciones avanzadas.</div>
-        <ul class="plan-features">
-          <li>Todo lo del plan Pro</li>
-          <li>Conversaciones ilimitadas</li>
-          <li>Integraciones ilimitadas</li>
-          <li>Automatizaciones personalizadas</li>
-          <li>Reportes mensuales</li>
-          <li>Soporte dedicado</li>
-        </ul>
-        <a href="#contacto" class="plan-cta plan-cta-secondary">Comenzar →</a>
-      </div>
-
-      <!-- PERSONALIZADO -->
-      <div class="plan-card">
-        <div class="plan-name">Personalizado</div>
-        <div class="plan-price" style="font-size: 1.8rem;">A consultar</div>
-        <div class="plan-desc">¿Tu negocio tiene necesidades únicas? Diseñamos una solución completamente a medida.</div>
-        <ul class="plan-features">
-          <li>Análisis de necesidades</li>
-          <li>Desarrollo a medida</li>
-          <li>Integraciones especiales</li>
-          <li>Capacitación al equipo</li>
-          <li>Soporte continuo</li>
-          <li>Precio según proyecto</li>
-        </ul>
-        <a href="#contacto" class="plan-cta plan-cta-secondary">Consultar →</a>
-      </div>
-
+    <div class="quote-card">
+      <div class="quote-card-icon">💬</div>
+      <h3>Cuéntanos de tu negocio y te armamos una cotización</h3>
+      <p>Sin compromiso. En una llamada corta vemos qué plataformas necesitas y cuánto volumen manejas, y te dejamos un precio claro — configuración inicial + cuota mensual de mantenimiento.</p>
+      <a href="#contacto" class="plan-cta plan-cta-primary">Solicitar cotización →</a>
     </div>
   </div>
 </section>
@@ -876,6 +1029,37 @@
   <span class="footer-copy">© 2025 DynaBloom Guatemala. Todos los derechos reservados.</span>
   <a href="https://portal.appdynabloomgt.com" class="footer-link">Acceder al portal →</a>
 </footer>
+
+<script>
+  (function () {
+    const track = document.getElementById('carouselTrack');
+    const dotsWrap = document.getElementById('carouselDots');
+    if (!track) return;
+
+    const slides = track.querySelectorAll('.carousel-slide');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    let index = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Ir al servicio ' + (i + 1));
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = dotsWrap.querySelectorAll('.carousel-dot');
+
+    function goTo(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, di) => d.classList.toggle('active', di === index));
+    }
+
+    prevBtn.addEventListener('click', () => goTo(index - 1));
+    nextBtn.addEventListener('click', () => goTo(index + 1));
+  })();
+</script>
 
 </body>
 </html>
